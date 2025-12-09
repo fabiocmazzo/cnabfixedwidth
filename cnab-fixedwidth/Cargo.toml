@@ -1,12 +1,18 @@
 [package]
 name = "cnab-fixedwidth"
-version = "0.1.0"
-edition = "2024"
-description = "A fixed-width parser tailored for Brazilian CNAB banking files."
-license = "MIT"
-repository = "https://github.com/fabiocmazzo/cnabfixedwidth"
-keywords = ["cnab", "banking", "parser", "fixed-width", "brazil"]
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+documentation.workspace = true
+readme.workspace = true
+
+description = "Um parser robusto e type-safe para arquivos CNAB 240/400 (bancários), com validação de posições e suporte a decimais implícitos."
+keywords = ["cnab", "banking", "banco", "parser", "fixed-width"]
 categories = ["parsing", "finance"]
+
 
 [dependencies]
 thiserror = "2"

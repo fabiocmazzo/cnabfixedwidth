@@ -4,3 +4,13 @@ members = [
     "cnab-derive",
     "cnab-fixedwidth"
 ]
+[workspace.package]
+version = "0.1.0"
+authors = ["Fabio Covolo Mazzo <fabiomazzo@gmail.com>"]
+edition = "2024"
+license = "MIT"
+repository = "https://github.com/fabiocmazzo/cnabfixedwidth"
+homepage = "https://github.com/fabiocmazzo/cnabfixedwidth"
+documentation = "https://docs.rs/cnabfixedwidth"
+readme = "README.md"
+
