@@ -1,7 +1,7 @@
 //! # Derive Macro para FixedWidth
 //!
 //! Este crate fornece a macro procedural `#[derive(FixedWidth)]` que gera automaticamente
-//! a implementação da trait `FixedWidthParse` do crate `cnab_fixed_width`.
+//! a implementação da trait `FixedWidthParse` do crate `cnab_fixedwidth`.
 //!
 //! # Exemplo de Uso
 //!
@@ -170,16 +170,16 @@ pub fn derive_fixed_width(input: TokenStream) -> TokenStream {
         let end = f.pos_end;
 
         let kind = match &f.kind {
-            FieldKindMacro::Alpha => quote!(cnab_fixed_width::FieldKind::Alpha),
-            FieldKindMacro::Numeric => quote!(cnab_fixed_width::FieldKind::Numeric),
-            FieldKindMacro::Decimal { scale } => quote!(cnab_fixed_width::FieldKind::Decimal { scale: #scale }),
+            FieldKindMacro::Alpha => quote!(cnab_fixedwidth::FieldKind::Alpha),
+            FieldKindMacro::Numeric => quote!(cnab_fixedwidth::FieldKind::Numeric),
+            FieldKindMacro::Decimal { scale } => quote!(cnab_fixedwidth::FieldKind::Decimal { scale: #scale }),
         };
 
         // Note o uso de `#name` direto, resultando em &'static str no código final
         quote! {
-            cnab_fixed_width::FieldSpec {
+            cnab_fixedwidth::FieldSpec {
                 name: #name,
-                pos: cnab_fixed_width::FieldPos { start: #start, end: #end },
+                pos: cnab_fixedwidth::FieldPos { start: #start, end: #end },
                 kind: #kind,
             }
         }
@@ -196,14 +196,14 @@ pub fn derive_fixed_width(input: TokenStream) -> TokenStream {
             FieldKindMacro::Alpha => quote! {
                 // Extrai string, garante UTF-8 válido e converte para String owned
                 #ident: parsed[#name].as_str()
-                    .ok_or(cnab_fixed_width::FixedWidthError::InvalidUtf8)?
+                    .ok_or(cnab_fixedwidth::FixedWidthError::InvalidUtf8)?
                     .to_string()
             },
             FieldKindMacro::Numeric => quote! {
                 // Extrai i64 e faz cast para o tipo do campo (ex: u32, i32, usize)
                 // Se falhar o tipo no core (ex: Alpha onde devia ser Num), retorna erro InvalidNumeric
                 #ident: parsed[#name].as_i64().ok_or(
-                    cnab_fixed_width::FixedWidthError::InvalidNumeric {
+                    cnab_fixedwidth::FixedWidthError::InvalidNumeric {
                         field: #name,
                         snippet: String::new(),
                     }
@@ -212,7 +212,7 @@ pub fn derive_fixed_width(input: TokenStream) -> TokenStream {
             FieldKindMacro::Decimal { scale: _ } => quote! {
                 // Extrai f64 (já ajustado pela escala no core)
                 #ident: parsed[#name].as_f64().ok_or(
-                    cnab_fixed_width::FixedWidthError::InvalidNumeric {
+                    cnab_fixedwidth::FixedWidthError::InvalidNumeric {
                         field: #name,
                         snippet: String::new(),
                     }
@@ -223,13 +223,13 @@ pub fn derive_fixed_width(input: TokenStream) -> TokenStream {
 
     // 6. Bloco final de implementação
     quote! {
-        impl cnab_fixed_width::FixedWidthParse for #name {
-            fn parse(line: &str) -> cnab_fixed_width::Result<Self> {
+        impl cnab_fixedwidth::FixedWidthParse for #name {
+            fn parse(line: &str) -> cnab_fixedwidth::Result<Self> {
                 // Criação da lista de especificações (barato pois são literais estáticos)
                 let fields = vec![ #(#field_specs),* ];
 
                 // Chamada ao parser genérico do Core
-                let parsed = cnab_fixed_width::parse_line(line, &fields)?;
+                let parsed = cnab_fixedwidth::parse_line(line, &fields)?;
 
                 // Construção da Struct segura
                 Ok(Self {
