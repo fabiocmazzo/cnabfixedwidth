@@ -27,7 +27,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-cnab-fixed-width = "0.1.0"
+cnab-fixed-width = "0.1.1"
 ```
 
 ## ⚡ Usage
