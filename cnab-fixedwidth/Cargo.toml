@@ -2,6 +2,11 @@
 name = "cnab-fixedwidth"
 version = "0.1.0"
 edition = "2024"
+description = "A fixed-width parser tailored for Brazilian CNAB banking files."
+license = "MIT"
+repository = "https://github.com/fabiocmazzo/cnabfixedwidth"
+keywords = ["cnab", "banking", "parser", "fixed-width", "brazil"]
+categories = ["parsing", "finance"]
 
 [dependencies]
 thiserror = "2"

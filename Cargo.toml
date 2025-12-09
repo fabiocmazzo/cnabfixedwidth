@@ -2,5 +2,5 @@
 resolver = "2"
 members = [
     "cnab-derive",
-    "cnab-fixed-width"
+    "cnab-fixedwidth"
 ]
