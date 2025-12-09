@@ -1,7 +1,7 @@
 # CNAB Fixed Width
 
-[![Crates.io](https://img.shields.io/crates/v/cnab-fixed-width.svg)](https://crates.io/crates/cnab-fixed-width)
-[![Documentation](https://docs.rs/cnab-fixed-width/badge.svg)](https://docs.rs/cnab-fixed-width)
+[![Crates.io](https://img.shields.io/crates/v/cnab-fixed-width.svg)](https://crates.io/crates/cnab-fixedwidth)
+[![Documentation](https://docs.rs/cnab-fixed-width/badge.svg)](https://docs.rs/cnab-fixedwidth)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 A robust, type-safe, and declarative Rust parser for fixed-width files, specifically designed for Brazilian Banking Standards (**CNAB 240/400**).
